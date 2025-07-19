@@ -170,7 +170,7 @@ export function GameScreen({ user, totalQuestions, onGameComplete }: GameScreenP
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="bg-gradient-to-r from-[#FFDDE5] to-[#FFECEE] p-6 rounded-2xl">
-                <p className="text-gray-700 leading-relaxed italic">"{currentQ.plot}"</p>
+                <p className="text-gray-700 leading-relaxed italic">&quot;{currentQ.plot}&quot;</p>
               </div>
 
               {/* User Input Section */}
@@ -203,7 +203,7 @@ export function GameScreen({ user, totalQuestions, onGameComplete }: GameScreenP
                     
                   </div>
                   <p className="text-xs text-gray-500 text-center">
-                    💡 Tip: Don't worry about exact spelling, capitalization, or spaces!
+                    💡 Tip: Don&apos;t worry about exact spelling, capitalization, or spaces!
                   </p>
                   <Button
                       onClick={handleShowAnswer}
@@ -239,7 +239,7 @@ export function GameScreen({ user, totalQuestions, onGameComplete }: GameScreenP
                       </span>
                     </div>
                     <p className={`text-center ${isCorrect ? "text-green-700" : "text-red-700"}`}>
-                      Your guess: "{userGuess}"
+                      Your guess: &quot;{userGuess}&quot;
                     </p>
                     {isCorrect && (
                       <p className="text-center text-green-600 text-sm mt-2">+1 point added to your score!</p>
@@ -261,7 +261,7 @@ export function GameScreen({ user, totalQuestions, onGameComplete }: GameScreenP
                     <p className="text-green-700">by {currentQ.author}</p>
                     {hasGuessed && !isCorrect && (
                       <p className="text-green-600 text-sm mt-2 italic">
-                        Your guess "{userGuess}" was close! Keep trying! 📚
+                        Your guess &quot;{userGuess}&quot; was close! Keep trying! 📚
                       </p>
                     )}
                   </motion.div>
