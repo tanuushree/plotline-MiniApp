@@ -5,6 +5,16 @@ const nextConfig = {
     config.externals.push("pino-pretty", "lokijs", "encoding");
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'warpcast.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 
   // Add frame-safe headers
   async headers() {
@@ -14,11 +24,11 @@ const nextConfig = {
         headers: [
           {
             key: "X-Frame-Options",
-            value: "ALLOWALL", // Or remove this header entirely
+            value: "ALLOWALL",
           },
           {
             key: "Content-Security-Policy",
-            value: "frame-ancestors *", // Allow all domains to embed
+            value: "frame-ancestors *",
           },
         ],
       },
