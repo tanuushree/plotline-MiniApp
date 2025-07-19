@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getOrCreateUser, updateHighScore } from '../../lib/user';
-import { getDb } from '../../lib/mongodb';
 
 export async function POST(req: NextRequest) {
   try {
-    const db = await getDb();
     const { fid, username, displayName, pfpUrl, score } = await req.json();
     if (!fid || !username || !displayName) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });

@@ -2,35 +2,28 @@
 
 import {
   useMiniKit,
-  useAddFrame,
-  useOpenUrl,
-  useAuthenticate,
+  // useOpenUrl,
+  // useAuthenticate,
 } from "@coinbase/onchainkit/minikit";
-import {
-  Name,
-  Identity,
-  Address,
-  Avatar,
-  EthBalance,
-} from "@coinbase/onchainkit/identity";
-import {
-  ConnectWallet,
-  Wallet,
-  WalletDropdown,
-  WalletDropdownDisconnect,
-} from "@coinbase/onchainkit/wallet";
-import { useEffect, useMemo, useState, useCallback } from "react";
+// import {
+//   Name,
+//   Identity,
+//   Address,
+//   Avatar,
+//   EthBalance,
+// } from "@coinbase/onchainkit/identity";
+// import {
+//   ConnectWallet,
+//   Wallet,
+//   WalletDropdown,
+//   WalletDropdownDisconnect,
+// } from "@coinbase/onchainkit/wallet";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion"
 import { AuthScreen } from "./components/auth-screen"
 import { GameScreen } from "./components/game-screen"
 import { ScoreScreen } from "./components/score-screen"
 import { LoadingScreen } from "./components/loading-screen"
-import ComposeCastButton from "./components/ComposeCastButton"
-import { Button } from "./components/DemoComponents";
-import { Icon } from "./components/DemoComponents";
-import { Home } from "./components/DemoComponents";
-import { Features } from "./components/DemoComponents";
-import { isInFarcasterFrame } from "@/lib/utils";
 type GameState = "loading" | "auth" | "game" | "score"
 
 type User = {
@@ -44,17 +37,13 @@ type User = {
 
 export default function App() {
   const { setFrameReady, isFrameReady, context } = useMiniKit();
-  const [frameAdded, setFrameAdded] = useState(false);
-  const [activeTab, setActiveTab] = useState("home");
+  // const [frameAdded, setFrameAdded] = useState(false);
   const [gameState, setGameState] = useState<GameState>("loading")
   const [user, setUser] = useState<User | null>(null)
   const [score, setScore] = useState(0)
   const [totalQuestions] = useState(5)
 
-  const addFrame = useAddFrame();
-  const openUrl = useOpenUrl();
-  const { signIn } = useAuthenticate();
-
+  // const addFrame = useAddFrame();
   
   useEffect(() => {
     if (!isFrameReady) {
@@ -68,37 +57,23 @@ export default function App() {
     }
   }, [setFrameReady, isFrameReady, gameState]);
 
-  const handleAddFrame = useCallback(async () => {
-    const frameAdded = await addFrame();
-    setFrameAdded(Boolean(frameAdded));
-  }, [addFrame]);
+  // const handleAddFrame = useCallback(async () => {
+  //   const frameAdded = await addFrame();
+  //   setFrameAdded(Boolean(frameAdded));
+  // }, [addFrame]);
 
-  const saveFrameButton = useMemo(() => {
-    if (context && !context.client.added) {
-      return (
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleAddFrame}
-          className="text-[var(--app-accent)] p-4"
-          icon={<Icon name="plus" size="sm" />}
-        >
-          Save Frame
-        </Button>
-      );
-    }
+  // const saveFrameButton = useMemo(() => {
+  //   if (frameAdded) {
+  //     return (
+  //       <div className="flex items-center space-x-1 text-sm font-medium text-[#0052FF] animate-fade-out">
+  //         <Icon name="check" size="sm" className="text-[#0052FF]" />
+  //         <span>Saved</span>
+  //       </div>
+  //     );
+  //   }
 
-    if (frameAdded) {
-      return (
-        <div className="flex items-center space-x-1 text-sm font-medium text-[#0052FF] animate-fade-out">
-          <Icon name="check" size="sm" className="text-[#0052FF]" />
-          <span>Saved</span>
-        </div>
-      );
-    }
-
-    return null;
-  }, [context, frameAdded, handleAddFrame]);
+  //   return null;
+  // }, [context, frameAdded, handleAddFrame]);
 
   const handleGameComplete = async (finalScore: number) => {
     setScore(finalScore);
@@ -199,7 +174,6 @@ export default function App() {
                 totalQuestions={totalQuestions}
                 user={user}
                 onRestart={handleRestart}
-                onCastScore={() => { }}
               />
             </motion.div>
           )}

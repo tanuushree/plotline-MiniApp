@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader } from "../components/ui/card";
+import Image from "next/image";
 import { Button } from "../components/ui/button";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
@@ -50,9 +51,11 @@ export default function LeaderboardPage() {
                   className="flex items-center bg-gradient-to-r from-[#FFDDE5] to-[#FFECEE] rounded-xl px-4 py-3 shadow-sm"
                 >
                   <div className="mr-4 text-lg font-bold text-[#6C63FF] w-6 text-right">{idx + 1}</div>
-                  <img
-                    src={user.pfpUrl || "/public/icon.png"}
+                  <Image
+                    src={user.pfpUrl || "/icon.png"}
                     alt={user.username}
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full object-cover border-2 border-[#6C63FF] bg-white"
                   />
                   <div className="ml-4 flex-1">
