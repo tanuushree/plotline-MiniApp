@@ -17,7 +17,6 @@ interface ScoreScreenProps {
   totalQuestions: number;
   user: User | null;
   onRestart: () => void;
-  onCastScore: () => void;
 }
 
 export function ScoreScreen({
@@ -25,7 +24,6 @@ export function ScoreScreen({
   totalQuestions,
   user,
   onRestart,
-  onCastScore,
 }: ScoreScreenProps) {
   const router = useRouter();
   const percentage = Math.round((score / totalQuestions) * 100);
@@ -103,8 +101,7 @@ export function ScoreScreen({
             </span>
           </div>
           <p className="text-sm text-gray-600">
-            You've shown some serious literary knowledge. Ready for another
-            round?
+            You&apos;ve shown some serious literary knowledge. Ready for another round?
           </p>
         </motion.div>
 

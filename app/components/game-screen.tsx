@@ -7,6 +7,14 @@ import { Progress } from "./ui/progress";
 import { Input } from "./ui/input";
 import { Eye, Trophy, Send, CheckCircle, XCircle } from "lucide-react";
 
+interface User {
+  fid: number;
+  username: string;
+  displayName: string;
+  pfpUrl?: string;
+  highScore?: number;
+}
+
 interface Question {
   id: number;
   plot: string;
@@ -16,7 +24,7 @@ interface Question {
 }
 
 interface GameScreenProps {
-  user: any | null;
+  user: User | null;
   totalQuestions: number;
   onGameComplete: (score: number) => void;
 }
